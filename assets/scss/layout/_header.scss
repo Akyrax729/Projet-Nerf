@@ -1,0 +1,43 @@
+@use "../abstract/mixins";
+@use "../abstract/variable" as var;
+
+header {
+    @include mixins.flex(column);
+
+    h1 {
+        font-size: 52px;
+        justify-self: center;
+        
+    }
+
+    div {
+        @include mixins.flex($justify:space-between);
+        width: 100%;
+
+        span {
+            width: 186.58px;
+        }
+    }
+
+    nav {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+
+        ul {
+
+            @include mixins.flex();
+
+            li {
+                padding: 1rem;
+
+                a {
+                    color: var.$secondarycolor;
+
+                    &:hover {
+                        color: var.$primarycolor;
+                    }
+                }
+            }
+        }
+    }
+}

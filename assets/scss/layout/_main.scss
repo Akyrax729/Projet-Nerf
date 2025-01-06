@@ -1,0 +1,46 @@
+@use "../abstract/mixins";
+@use "../abstract/variable" as var;
+
+main {
+    padding: 2rem 0;
+
+    section {
+        @include mixins.flex(column);
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 15px;
+        padding: 1rem;
+
+        h2 {
+            font-size: 32px;
+        }
+        
+        div {
+            @include mixins.flex();
+            width: 100%;
+            padding: 1rem 25px;
+
+            img {
+                height: 350px;
+                width: 350px;
+                object-fit: contain;
+            }
+    
+            .text {
+                @include mixins.flex(column,flex-start,flex-start);  
+        
+                p {
+                    font-size: 20px;
+                    text-align: justify;
+                }
+            }
+        }
+
+       a {
+        color: var.$secondarycolor;
+
+        &:hover {
+            color: var.$primarycolor;
+        }
+       }
+    }
+}

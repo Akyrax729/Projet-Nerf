@@ -1,0 +1,11 @@
+@use "../abstract/variable" as var;
+
+body {
+    background-color: rgb(231, 231, 231);
+    margin: 0 3%;
+
+    .logo {
+        height: 100px;
+    }
+
+}
