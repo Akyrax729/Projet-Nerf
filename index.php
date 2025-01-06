@@ -1,3 +1,26 @@
+<?php 
+    include ("general/function.php");
+
+    $request = $bdd->prepare('  SELECT gamme.gamme_id, gamme.gamme_name
+                                FROM gamme                         
+                            ');
+
+    $request-> execute(array());
+
+    $datagamme = $request-> fetchAll();
+
+    $requestproduit = $bdd->prepare(' SELECT produit.produit_id,produit.produit_name,produit.produit_img,produit.gamme_id,produit.produit_desc
+                                    FROM produit
+                                    LEFT JOIN gamme
+                                    ON gamme.gamme_id = produit.gamme_id
+                                ');
+
+    $requestproduit-> execute(array());
+
+    $dataproduit = $requestproduit -> fetchAll();
+    
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,28 +39,44 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#1">Gamme 1</a></li>
-                <li><a href="#2">Gamme 2</a></li>
-                <li><a href="#3">Gamme 3</a></li>
+
+            <!-- GAMME  -->
+        <?php foreach ($datagamme as $datag) :?>
+                <li><a href="#<?= $datag['gamme_id']?>"><?= $datag['gamme_name'];?></a></li>
+        <?php endforeach; ?>
+        
             </ul>
         </nav>
+
     </header>
 
 
     <main>
-        <section id="1">
-            <h2>Gamme</h2>
-            <div>
-                <img src="assets/img/dart-tag/Nerf_Speedswarm.jpg" alt="Photo d'un Nerf Speedswarm">
-                <div class="text">
-                    <h3>Nom du modèle</h3>
-                    <p>Cadence de tir</p>
-                    <p>Descriptif</p>
-                </div>
-            </div>
 
-            <p><a href="">Modifier</a> - <a href="">Supprimer</a></p>
-        </section>
+            <!-- GAMME  -->
+
+        <?php foreach ($datagamme as $datag) :?>
+            <section id="<?php echo $datag['gamme_id'] ?>">
+                <h2><?php echo $datag['gamme_name'] ?></h2>
+
+                <!-- PRODUIT  -->
+
+                <?php foreach ($dataproduit as $data):?>
+                    <?php if ($data['gamme_id'] == $datag["gamme_id"]) :?>
+                        <div>                     
+                            <img src="assets/img/<?= $data['produit_img'] ?>" alt="Image de <?= $data['produit_name'] ?>">
+                            <div class="text">
+                                <h3><?=$data['produit_name']?></h3>
+                                <p><?= $data['produit_desc'] ?></p>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+
+                <p><a href=""></a></p>
+            </section>
+        <?php endforeach; ?>
+
     </main>
 
 
@@ -50,7 +89,7 @@
 
         </section>
 
-        <a href=""><i class="fa-solid fa-arrow-up"></i></a>
+        <a href="#"><img src="assets/img/arrow_up.png" alt=""></a>
     </footer>
 
     

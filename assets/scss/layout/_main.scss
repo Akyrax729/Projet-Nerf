@@ -9,6 +9,7 @@ main {
         background-color: rgba(0, 0, 0, 0.6);
         border-radius: 15px;
         padding: 1rem;
+        margin: 0.5rem 0;
 
         h2 {
             font-size: 32px;
@@ -20,8 +21,8 @@ main {
             padding: 1rem 25px;
 
             img {
-                height: 350px;
-                width: 350px;
+                height: 200px;
+                width: 200px;
                 object-fit: contain;
             }
     

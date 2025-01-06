@@ -32,9 +32,13 @@ header {
 
                 a {
                     color: var.$secondarycolor;
+                    display: block;
+                    font-size: 24px;
+                    transition: all 0.3s;
 
                     &:hover {
-                        color: var.$primarycolor;
+                        color: var.$accentcolor;
+                        transform: scale(110%);
                     }
                 }
             }

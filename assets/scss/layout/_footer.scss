@@ -1,2 +1,26 @@
 @use "../abstract/mixins";
 @use "../abstract/variable" as var;
+
+footer {
+    @include mixins.flex();
+    margin-bottom: 1rem;
+
+    section {
+        @include mixins.flex(column);
+        margin: 0 20rem;
+        text-align: justify;
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+    }
+
+    a {
+
+        img {
+            background-color: var.$primarycolor;
+            border-radius: 50%;
+            height: 64px;
+        }
+    }
+}
